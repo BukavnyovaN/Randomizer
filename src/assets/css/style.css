@@ -1,5 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
+    font-size: 20px;
     color: #fff;
     background: rgb(160,87,86);
     background: linear-gradient(270deg, rgba(160,87,86,1) 0%, rgba(154,150,105,1) 33%, rgba(218,168,60,1) 66%, rgba(160,184,61,1) 100%);
@@ -36,7 +37,7 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.5);
     margin: 20px;
     p {
-        font-size: 32px;
+        font-size: 34px;
     };
     svg {
         align-self: end;
