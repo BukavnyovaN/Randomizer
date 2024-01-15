@@ -51,6 +51,10 @@ h1 {
     margin: 3%;
 }
 
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 .btn {
     display: block;

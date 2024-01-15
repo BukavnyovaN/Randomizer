@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function generateRandomNumber() {
-        const randomNumber = Math.floor(Math.random() * 4) + 1;
-        displayResult(randomNumber, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
+        if(generateNumberBtn.classList.contains('disabled')){
+            return
+        } else {
+            generateNumberBtn.classList.add('disabled');
+            const randomNumber = Math.floor(Math.random() * 4) + 1;
+            displayResult(randomNumber, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
+            enableButton('#generateNumber', 2000)
+        }
     }
 
     function generateRandomAction() {
@@ -26,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: 'https://api.iconify.design/material-symbols/skull-outline.svg?color=white&width=70&height=70',
             },
             {
-                name: 'Run away!',
+                name: 'Run away',
                 icon: 'https://api.iconify.design/fluent/run-24-regular.svg?color=white&width=70&height=70',
             },
             {
@@ -38,13 +44,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: 'https://api.iconify.design/covid/vaccine-protection-infrared-thermometer-gun.svg?color=white&width=70&height=70',
             }
         ];
-        const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
-        displayResult(randomAction.name, randomAction.icon);
+        if(generateActionBtn.classList.contains('disabled')){
+            return
+        } else {
+            generateActionBtn.classList.add('disabled');
+            const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
+            displayResult(randomAction.name, randomAction.icon);
+            enableButton('#generateAction', 2000)
+        }
+    }
+
+    function enableButton(selector, time) {
+        setTimeout(function () {
+            document.querySelector(selector).classList.remove('disabled');
+          }, time);
     }
 
     function displayResult(message, iconUrl) {
+        const numberOfSteps = Math.floor(Math.random() * 4) + 1;
         resultWindow.classList.remove('hidden');
-        resultText.textContent = `${message}`;
+        message == 'Run away' ? resultText.textContent = `${message}! [${numberOfSteps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
     }
 });
