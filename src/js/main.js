@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             generateNumberBtn.classList.add('disabled');
             const randomNumber = Math.floor(Math.random() * 4) + 1;
             displayResult(randomNumber, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
-            enableButton('#generateNumber', 2000)
+            enableButton('#generateNumber', 1000)
         }
     }
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             generateActionBtn.classList.add('disabled');
             const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
             displayResult(randomAction.name, randomAction.icon);
-            enableButton('#generateAction', 2000)
+            enableButton('#generateAction', 1000)
         }
     }
 
