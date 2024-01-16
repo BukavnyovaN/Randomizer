@@ -22,6 +22,16 @@ h1 {
     color: #333;
 }
 
+@keyframes example {
+  from {transform: rotateY(0deg);}
+  to {transform: rotateY(360deg);}
+}
+
+.animation {
+  animation-name: example;
+  animation-duration: 1s;
+}
+
 .result {
     display: flex;
     flex-direction: column;
@@ -33,7 +43,7 @@ h1 {
     position: relative;
     width: 256px;
     min-height: 315px;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
     margin: 20px;
     p {

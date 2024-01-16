@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function generateRandomNumber() {
+        resultWindow.classList.remove('animation');
         if(generateNumberBtn.classList.contains('disabled')){
             return
-        } else {
+        } else { 
             generateNumberBtn.classList.add('disabled');
             const randomNumber = Math.floor(Math.random() * 4) + 1;
             displayResult(randomNumber, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generateRandomAction() {
+        resultWindow.classList.remove('animation');
         const actions = [
             {
                 name: 'Oops...you were bitten!',
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if(generateActionBtn.classList.contains('disabled')){
             return
         } else {
+            
             generateActionBtn.classList.add('disabled');
             const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
             displayResult(randomAction.name, randomAction.icon);
@@ -61,9 +64,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function displayResult(message, iconUrl) {
+        animation();
         const numberOfSteps = Math.floor(Math.random() * 4) + 1;
         resultWindow.classList.remove('hidden');
         message == 'Run away' ? resultText.textContent = `${message}! [${numberOfSteps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
+        closeWindow();
+    }
+
+    function animation() {
+        setTimeout(function () {
+            resultWindow.classList.add('animation');
+          }, 0);
     }
 });
