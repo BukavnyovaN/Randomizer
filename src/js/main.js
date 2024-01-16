@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if(generateActionBtn.classList.contains('disabled')){
             return
         } else {
-            
             generateActionBtn.classList.add('disabled');
             const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
             displayResult(randomAction.name, randomAction.icon);
@@ -69,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
         resultWindow.classList.remove('hidden');
         message == 'Run away' ? resultText.textContent = `${message}! [${numberOfSteps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
-        closeWindow();
     }
 
     function animation() {
