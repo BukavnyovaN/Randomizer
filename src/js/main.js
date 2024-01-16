@@ -10,9 +10,24 @@ document.addEventListener('DOMContentLoaded', function () {
     generateActionBtn.addEventListener('click', generateRandomAction);
     closeButton.addEventListener('click', closeCard);
 
-    function closeCard() {
-        resultWindow.classList.add('hidden');
-    };
+    const actions = [
+        {
+            name: 'Oops...you were bitten!',
+            icon: 'https://api.iconify.design/material-symbols/skull-outline.svg?color=white&width=70&height=70',
+        },
+        {
+            name: 'Run away',
+            icon: 'https://api.iconify.design/fluent/run-24-regular.svg?color=white&width=70&height=70',
+        },
+        {
+            name: 'Use steel arms!',
+            icon: 'https://api.iconify.design/ph/knife.svg?color=white&width=70&height=70',
+        },
+        {
+            name: 'Use firearms!',
+            icon: 'https://api.iconify.design/covid/vaccine-protection-infrared-thermometer-gun.svg?color=white&width=70&height=70',
+        }
+    ];
 
     function generateRandomNumber() {
         resultWindow.classList.remove('animation');
@@ -28,24 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generateRandomAction() {
         resultWindow.classList.remove('animation');
-        const actions = [
-            {
-                name: 'Oops...you were bitten!',
-                icon: 'https://api.iconify.design/material-symbols/skull-outline.svg?color=white&width=70&height=70',
-            },
-            {
-                name: 'Run away',
-                icon: 'https://api.iconify.design/fluent/run-24-regular.svg?color=white&width=70&height=70',
-            },
-            {
-                name: 'Use steel arms!',
-                icon: 'https://api.iconify.design/ph/knife.svg?color=white&width=70&height=70',
-            },
-            {
-                name: 'Use firearms!',
-                icon: 'https://api.iconify.design/covid/vaccine-protection-infrared-thermometer-gun.svg?color=white&width=70&height=70',
-            }
-        ];
+        
         if(generateActionBtn.classList.contains('disabled')){
             return
         } else {
@@ -69,6 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
         message == 'Run away' ? resultText.textContent = `${message}! [${numberOfSteps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
     }
+
+    function closeCard() {
+        resultWindow.classList.add('hidden');
+    };
 
     function animation() {
         setTimeout(function () {
