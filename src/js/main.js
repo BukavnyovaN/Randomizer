@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const generateNumberBtn = document.getElementById('generateNumber');
     const generateActionBtn = document.getElementById('generateAction');
     const closeButton = document.querySelector('.btn-close');
+    let roomNumber;
+
 
     generateNumberBtn.addEventListener('click', generateRandomNumber);
     generateActionBtn.addEventListener('click', generateRandomAction);
@@ -12,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const actions = [
         {
-            name: 'Oops...you were bitten!',
-            icon: 'https://api.iconify.design/material-symbols/skull-outline.svg?color=white&width=70&height=70',
-        },
-        {
             name: 'Run away',
             icon: 'https://api.iconify.design/fluent/run-24-regular.svg?color=white&width=70&height=70',
+        },
+        {
+            name: 'Oops...you were bitten!',
+            icon: 'https://api.iconify.design/material-symbols/skull-outline.svg?color=white&width=70&height=70',
         },
         {
             name: 'Use steel arms!',
@@ -29,29 +31,71 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
+    async function getRoom() {
+        const response = await fetch("http://158.160.75.148/room/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        roomNumber = await response.json();
+        console.log(roomNumber);
+    };
+    getRoom();
+
+    async function getRandomNumber() {
+        const response = await fetch(`http://158.160.75.148/game/${roomNumber}/run`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        let randomNumber = await response.json();
+        return randomNumber;
+    };
+
+    async function getRandomAction() {
+        const response = await fetch(`http://158.160.75.148/game/${roomNumber}/fight`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        let randomAction = await response.json();
+        return randomAction;
+    };
+
     function generateRandomNumber() {
-        resultWindow.classList.remove('animation');
-        if(generateNumberBtn.classList.contains('disabled')){
-            return
-        } else { 
-            generateNumberBtn.classList.add('disabled');
-            const randomNumber = Math.floor(Math.random() * 4) + 1;
-            displayResult(randomNumber, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
-            enableButton('#generateNumber', 1000)
-        }
+        getRandomNumber()
+            .then((data) => {
+                console.log(data);
+                resultWindow.classList.remove('animation');
+                if(generateNumberBtn.classList.contains('disabled')){
+                    return
+                } else { 
+                    generateNumberBtn.classList.add('disabled');
+                    displayResult(data.steps, 'https://api.iconify.design/mdi/crystal-ball.svg?color=white&width=70&height=70');
+                    enableButton('#generateNumber', 1000)
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            })
     }
 
     function generateRandomAction() {
-        resultWindow.classList.remove('animation');
-        
-        if(generateActionBtn.classList.contains('disabled')){
-            return
-        } else {
-            generateActionBtn.classList.add('disabled');
-            const randomAction = actions[Math.floor(Math.random() * actions.length)]; 
-            displayResult(randomAction.name, randomAction.icon);
-            enableButton('#generateAction', 1000)
-        }
+        getRandomAction()
+        .then((data) => {
+            console.log(data);
+            resultWindow.classList.remove('animation');
+            if(generateActionBtn.classList.contains('disabled')){
+                return
+            } else {
+                generateActionBtn.classList.add('disabled');
+                displayResult(actions[data.subtype - 1].name, actions[data.subtype - 1].icon, data.steps);
+                enableButton('#generateAction', 1000)
+            }
+        })
+
+       
     }
 
     function enableButton(selector, time) {
@@ -60,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
           }, time);
     }
 
-    function displayResult(message, iconUrl) {
+    function displayResult(message, iconUrl, steps) {
         animation();
         const numberOfSteps = Math.floor(Math.random() * 4) + 1;
         resultWindow.classList.remove('hidden');
-        message == 'Run away' ? resultText.textContent = `${message}! [${numberOfSteps}]` : resultText.textContent = `${message}`;
+        steps ? resultText.textContent = `${message}! [${steps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
     }
 
