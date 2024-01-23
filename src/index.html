@@ -4,32 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> 
-    <title>Document</title>
+    <title>Zombie in da house!</title>
 </head>
 <body>
-    <div class="buttons">
-        <div id="generateNumber" class="container-4">
-            <div class="btn btn-four">
+  <div id="login">
+    <div id="createRoom" class="container-4">
+      <div class="btn btn-four">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 26 26"><path fill="white" d="M22.438-.063c-.375 0-.732.17-1.032.47l-.718.687l4.218 4.218l.688-.718c.6-.6.6-1.494 0-2.094L23.5.406c-.3-.3-.688-.469-1.063-.469zM20 1.688l-1.094.907l4.5 4.5l1-1zm-1.688 1.625l-9.03 8.938a.975.975 0 0 0-.126.125l-.062.031a.975.975 0 0 0-.219.438l-1.219 4.281a.975.975 0 0 0 1.219 1.219l4.281-1.219a.975.975 0 0 0 .656-.531l8.876-8.782L21 6v.094l-1.188-1.188h.094l-1.593-1.593zM.813 4A1 1 0 0 0 0 5v20a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V14a1 1 0 1 0-2 0v10H2V6h10a1 1 0 1 0 0-2H1a1 1 0 0 0-.094 0a1 1 0 0 0-.094 0zm9.813 9.813l1.375.093l.094 1.5l-1.375.406l-.531-.53z"/></svg>
+              Create Room
+          </span>
+      </div>
+    </div>
+    <div class="enterRoomForm">      
+      <form id="form">
+          <label for="input"><input id="input" type="text" placeholder="Room Number" ></label>    
+          <div id="enterRoom" class="container-4">
+            <button type="submit" class="btn btn-four">
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="white" d="M12 1L0 13l12 12l12-12zm0 2.8l9.2 9.2l-9.2 9.2L2.8 13zM12 8a1 1 0 0 0 0 2a1 1 0 0 0 0-2m-4 4a1 1 0 0 0 0 2a1 1 0 0 0 0-2m4 0a1 1 0 0 0 0 2a1 1 0 0 0 0-2m4 0a1 1 0 0 0 0 2a1 1 0 0 0 0-2m10.8 1l-2 2H30v12H18v-5.2l-2 2V29h16V13zM12 16a1 1 0 0 0 0 2a1 1 0 0 0 0-2m12 4a1 1 0 0 0 0 2a1 1 0 0 0 0-2"/></svg>
-                    Generate number
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M23.992 6H6v36h18"/><path d="m25 33l-9-9l9-9m17 8.992H16"/></g></svg>
+                    Enter Room
                 </span>
-            </div>
+            </button>
           </div>
-          <div id="generateAction" class="container-4">
-            <div class="btn btn-four">
+      </form>
+    </div>
+  </div>
+  <div id="mainApp" class="hidden">
+    <div id="roomNumber"></div>
+    <div class="buttons">
+       <div id="generateNumber" class="container-4">
+          <div class="btn btn-four">
               <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"><path d="M13.48 7.516a6.5 6.5 0 1 1-6.93-7"/><path d="M9.79 8.09A3 3 0 1 1 5.9 4.21M7 7l2.5-2.5m2 .5l-2-.5l-.5-2l2-2l.5 2l2 .5z"/></g></svg>
-                Generate action
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="white" d="M12 1L0 13l12 12l12-12zm0 2.8l9.2 9.2l-9.2 9.2L2.8 13zM12 8a1 1 0 0 0 0 2a1 1 0 0 0 0-2m-4 4a1 1 0 0 0 0 2a1 1 0 0 0 0-2m4 0a1 1 0 0 0 0 2a1 1 0 0 0 0-2m4 0a1 1 0 0 0 0 2a1 1 0 0 0 0-2m10.8 1l-2 2H30v12H18v-5.2l-2 2V29h16V13zM12 16a1 1 0 0 0 0 2a1 1 0 0 0 0-2m12 4a1 1 0 0 0 0 2a1 1 0 0 0 0-2"/></svg>
+                  Generate number
               </span>
-            </div>
           </div>
+        </div>
+        <div id="generateAction" class="container-4">
+          <div class="btn btn-four">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"><path d="M13.48 7.516a6.5 6.5 0 1 1-6.93-7"/><path d="M9.79 8.09A3 3 0 1 1 5.9 4.21M7 7l2.5-2.5m2 .5l-2-.5l-.5-2l2-2l.5 2l2 .5z"/></g></svg>
+              Generate action
+            </span>
+          </div>
+        </div>
     </div>
     <div class="result hidden">
         <svg class="btn-close" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="white" d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"/></svg>
         <p><img id="resultIcon" src="" alt=""></p>
         <p id="resultText"></p>
     </div>
+  </div>
+    
 
     <script type="module" src="./js/main.js"></script>
 </body>

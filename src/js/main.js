@@ -4,12 +4,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultIcon = document.getElementById('resultIcon');
     const generateNumberBtn = document.getElementById('generateNumber');
     const generateActionBtn = document.getElementById('generateAction');
+    const createRoomBtn = document.getElementById('createRoom');
+    const enterRoomForm = document.getElementById('form');
+    const mainApp = document.getElementById('mainApp');
+    const login = document.getElementById('login');
+    const roomNumberTemplate = document.getElementById('roomNumber');
     const closeButton = document.querySelector('.btn-close');
     let roomNumber;
 
 
     generateNumberBtn.addEventListener('click', generateRandomNumber);
     generateActionBtn.addEventListener('click', generateRandomAction);
+    createRoomBtn.addEventListener('click', getRoom);
+    enterRoomForm.addEventListener('submit', enterRoom);
     closeButton.addEventListener('click', closeCard);
 
     const actions = [
@@ -31,17 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
-    async function getRoom() {
-        const response = await fetch("http://158.160.75.148/room/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        roomNumber = await response.json();
-        console.log(roomNumber);
-    };
-    getRoom();
+    
+
+    function enterRoom(event){
+         event.preventDefault();
+         let msg = document.getElementById("input").value;
+        console.log(msg);
+
+    }
 
     async function getRandomNumber() {
         const response = await fetch(`http://158.160.75.148/game/${roomNumber}/run`, {
@@ -106,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function displayResult(message, iconUrl, steps) {
         animation();
-        const numberOfSteps = Math.floor(Math.random() * 4) + 1;
         resultWindow.classList.remove('hidden');
         steps ? resultText.textContent = `${message}! [${steps}]` : resultText.textContent = `${message}`;
         resultIcon.src = iconUrl;
